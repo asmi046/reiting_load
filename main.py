@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from excel_loader import get_src_data, get_src_data_index
+import tabulate
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
+def main():
+    file = "data/МО.xlsx"
+    # to_base_data = get_src_data(file)
+    to_base_data = get_src_data_index(file, index=2)
+    raw = tabulate.tabulate(to_base_data["raw_data"], headers=['Наименование МО', 'Направление', 'Показатель', 'Значение', 'Балл', 'Лидер', 'Значение лидера', 'Место', 'Период'])
+
+    print(raw)
+    print(to_base_data["rank_values"])
+    print(to_base_data["rank_index"])
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    main()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
